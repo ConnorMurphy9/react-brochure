@@ -1,13 +1,16 @@
 import React from "react";
-
+import background from "../assets/brick-wall-with-chairs.jpg";
 function Home () {
 
     return (
-    <div>
-    <h1>Home</h1>
-    <h2>Please show up</h2>
-    <h3>how about now</h3>
-    </div>
+        <div>
+            <h1>Home</h1>
+
+            <div className="bg-img" style={{ backgroundImage: `url(${background})`}}>
+                Welcome to Connor's Pizzeria
+            </div>
+            
+        </div>
         )
     }
 

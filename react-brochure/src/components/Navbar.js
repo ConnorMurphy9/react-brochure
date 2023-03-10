@@ -11,7 +11,7 @@ function Navbar () {
                             <Link to ="/">Home</Link>
                         </li>
                         <li>
-                            <Link to ="/Entrees">Entrees</Link>
+                            <Link to ="/Menu">Menu</Link>
                         </li>
                         <li>
                             <Link to ="/Sides">Sides</Link>
