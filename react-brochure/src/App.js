@@ -10,6 +10,8 @@ import Menu from './components/Menu';
 import Sides from './components/Sides';
 // import OrderHistory from './components/OrderHistory';
 import Navbar from './components/Navbar';
+import Signup from './components/Signup';
+// import Login from './components/Login';
 
 function App() {
   return (
@@ -22,8 +24,8 @@ function App() {
             {/* <Provider store={store}> */}
             <Routes>
               <Route path="/" element={<Home />} />
-              {/* <Route path="/Login" element={<Login />} />
-              <Route path="/Signup" element={<Signup />} /> */}
+              {/* <Route path="/Login" element={<Login />} /> */}
+              <Route path="/Signup" element={<Signup />} />
               <Route path="/About" element={<About />} />
               {/* <Route path="/OrderHistory" element={<OrderHistory />} /> */}
               <Route path="/Menu" element={<Menu />} />

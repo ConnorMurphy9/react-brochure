@@ -11,6 +11,9 @@ function Navbar () {
                             <Link to ="/">Home</Link>
                         </li>
                         <li>
+                            <Link to ="/Signup">Signup</Link>
+                        </li>
+                        <li>
                             <Link to ="/Menu">Menu</Link>
                         </li>
                         <li>
