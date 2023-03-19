@@ -1,5 +1,5 @@
 const User = require('./User');
-const Order = require('./Order');
+const Order = require('./Product');
 const History = require('./History');
 
 

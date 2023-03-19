@@ -1,20 +1,45 @@
-const mongoose = require('mongoose');
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
-const { Schema } = mongoose;
+class History extends Model {}
 
-const historySchema = new Schema({
-  purchaseDate: {
-    type: Date,
-    default: Date.now
-  },
-  Orders: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Order'
-    }
-  ]
-});
+History.init(
+          {
+              id: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                primaryKey: true,
+                autoIncrement: true,
+                },
+              ordered_product: {
+                type: DataTypes.TEXT,
+                allowNull: false,
+                },
 
-const History = mongoose.model('History', historySchema);
+
+
+          },
+          {
+            sequelize,
+            timestamps: true,
+            freezeTableName: true,
+            underscored: true,
+            modelName: "message",
+          }
+);
+// const historySchema = new Schema({
+//   purchaseDate: {
+//     type: Date,
+//     default: Date.now
+//   },
+//   Orders: [
+//     {
+//       type: Schema.Types.ObjectId,
+//       ref: 'Order'
+//     }
+//   ]
+// });
+
+// const History = mongoose.model('History', historySchema);
 
 module.exports = History;

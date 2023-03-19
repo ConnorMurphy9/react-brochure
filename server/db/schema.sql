@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS pizzeria_db;
+CREATE DATABASE pizzeria_db;
