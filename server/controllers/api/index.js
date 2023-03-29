@@ -1,25 +1,10 @@
-const User = require('./User');
-const Product = require('./Product');
-const Order = require('./Order');
+const router = require('express').Router();
+const userRoutes = require('./userRoutes');
+const productRoutes = require('./productRoutes');
+const orderRoutes = require('./orderRoutes');
 
-User.belongsToMany(Product, {
-  // Define the third table needed to store the foreign keys
-  through: {
-    model: Order,
-    unique: false
-  },
-  // Define an alias for when data is retrieved
-  as: 'planned_orders'
-});
+router.use('/users', userRoutes);
+router.use('/products', productRoutes);
+router.use('/orders', orderRoutes);
 
-Product.belongsToMany(User, {
-  // Define the third table needed to store the foreign keys
-  through: {
-    model: Order,
-    unique: false
-  },
-  // Define an alias for when data is retrieved
-  as: 'product_users'
-});
-
-module.exports = { User, Product, Order };
+module.exports = router;
