@@ -23,7 +23,7 @@ const seedDatabase = async () => {
       Math.floor(Math.random() * products.length)
     ];
 
-    // Create a new trip with random `trip_budget` and `user_amount` values, but with ids selected above
+    // Create a new order with random `user_amount` values, but with ids selected above
     await Order.create({
       user_amount: Math.floor(Math.random() * 10) + 1,
       user_id: randomUserId,
