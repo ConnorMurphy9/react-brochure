@@ -56,3 +56,14 @@ app.use(routes);
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
+
+
+// var sequelize = new Sequelize('mysql://localhost/mysql');
+
+// sequelize.getQueryInterface().showAllSchemas().then((tableObj) => {
+//     console.log('// Tables in database','==========================');
+//     console.log(tableObj);
+// })
+// .catch((err) => {
+//     console.log('showAllSchemas ERROR',err);
+// })

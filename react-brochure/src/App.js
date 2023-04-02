@@ -7,7 +7,7 @@ import About from './components/About';
 import Beverages from './components/Beverages';
 import Desserts from './components/Desserts';
 import Menu from './components/Menu';
-import Sides from './components/Sides';
+import Checkout from './components/Checkout';
 // import OrderHistory from './components/OrderHistory';
 import Navbar from './components/Navbar';
 import Signup from './components/Signup';
@@ -29,7 +29,7 @@ function App() {
               <Route path="/About" element={<About />} />
               {/* <Route path="/OrderHistory" element={<OrderHistory />} /> */}
               <Route path="/Menu" element={<Menu />} />
-              <Route path="/Sides" element={<Sides />} />
+              <Route path="/Checkout" element={<Checkout />} />
               <Route path="/Beverages" element={<Beverages />} />
               <Route path="/Desserts" element={<Desserts />} />
               
