@@ -5,14 +5,14 @@ const userSeedData = require('./userSeeds.json');
 const productSeedData = require('./productSeeds.json');
 
 const seedDatabase = async () => {
-  await sequelize.sync({ force: true });
+  await sequelize.sync({ force: false });
 
   const users = await User.bulkCreate(userSeedData);
 
   const products = await Product.bulkCreate(productSeedData);
 
   // Create orders at random
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 5; i++) {
     // Get a random user's `id`
     const { id: randomUserId } = users[
       Math.floor(Math.random() * users.length)
