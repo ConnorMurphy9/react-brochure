@@ -1,5 +1,5 @@
 const User = require('./User');
-const Order = require('./Product');
+const Order = require('./Order');
 const Product = require('./Product');
 
 User.belongsToMany(Product, {

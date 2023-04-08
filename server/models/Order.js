@@ -9,22 +9,20 @@ Order.init(
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 primaryKey: true,
-                autoIncrement: true,
+                autoIncrement: true
                 },
               user_id: {
                 type: DataTypes.INTEGER,
-                references: {
+                reference: {
                   model: 'user',
                   key: 'id',
-                  unique: 'false'
                 }
                 },
               product_id: {
                 type: DataTypes.INTEGER,
-                references: {
+                reference: {
                   model: 'product',
                   key: 'id',
-                  unique: 'false'
                 }
               },
           },
