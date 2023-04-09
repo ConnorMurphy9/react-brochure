@@ -1,5 +1,15 @@
 const router = require('express').Router();
-const { Order } = require('../../models');
+const { Order, Product, User } = require('../../models');
+
+// GET all orders
+router.get('/', async (req, res) => {
+  try {
+    const orderData = await Order.findAll();
+    res.status(200).json(orderData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // CREATE an order
 router.post('/', async (req, res) => {

@@ -8,14 +8,6 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const seedAll = require('./seeds/index')
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// turn on routes
-app.use(routes);
-app.use(express.static(path.join(__dirname, 'public')));
-
-
 const sess = {
   secret: 'Super duper top secret',
   cookie: {
@@ -32,6 +24,14 @@ const sess = {
 }
 
 app.use(session(sess))
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// turn on routes
+app.use(routes);
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 // turn on connection to db and server
