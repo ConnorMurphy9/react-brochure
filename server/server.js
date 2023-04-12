@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // turn on connection to db and server
 sequelize.sync({ force: false }).then(async () => {
   await seedAll()
-  await app.listen(PORT, () => {
+  await app.listen(process.env.PORT || PORT, () => {
       console.log(`App Listening on port ${PORT}`)
   });
 })
