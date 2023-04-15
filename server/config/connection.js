@@ -18,4 +18,4 @@ if (process.env.JAWSDB_URL) {
 }
 module.exports = sequelize;
 
-mysql://bb1d127f81b6e3:a83d4adf@us-cdbr-east-06.cleardb.net/heroku_718cc1d874f1b03?reconnect=true
+// mysql://bb1d127f81b6e3:a83d4adf@us-cdbr-east-06.cleardb.net/heroku_718cc1d874f1b03?reconnect=true
