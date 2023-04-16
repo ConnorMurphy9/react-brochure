@@ -5,7 +5,7 @@ const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const path = require('path')
 const app = express();
-const PORT = process.env.PORT || 3006;
+const PORT = process.env.PORT || 3001;
 const seedAll = require('./seeds/index')
 
 const sess = {
@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // turn on connection to db and server
 sequelize.sync({ force: false }).then(async () => {
   await seedAll()
-  await app.listen(process.env.PORT || PORT, () => {
+  await app.listen(PORT, () => {
       console.log(`App Listening on port ${PORT}`)
   });
 })
