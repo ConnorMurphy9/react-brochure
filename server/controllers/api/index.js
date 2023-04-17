@@ -7,4 +7,8 @@ router.use('/users', userRoutes);
 router.use('/products', productRoutes);
 router.use('/orders', orderRoutes);
 
+router.get('/', function(req, res, next) {  
+    res.status(200).send("Hi, It works!")  
+}); 
+
 module.exports = router;
