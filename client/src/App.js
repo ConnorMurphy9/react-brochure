@@ -1,6 +1,6 @@
 import './App.css';
 
-// import {useState} from "react";
+import React, {useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/About';
@@ -11,9 +11,13 @@ import Checkout from './components/Checkout';
 // import OrderHistory from './components/OrderHistory';
 import Navbar from './components/Navbar';
 import Signup from './components/Signup';
-// import Login from './components/Login';
+import Login from './components/Login';
 
 function App() {
+  const [token, setToken] = useState();
+  if(!token) {
+    return <Login setToken={setToken} />
+  }
   return (
     <div className="App">
          <Router>
@@ -21,10 +25,9 @@ function App() {
          
             <Navbar />
             
-            {/* <Provider store={store}> */}
             <Routes>
               <Route path="/" element={<Home />} />
-              {/* <Route path="/Login" element={<Login />} /> */}
+              <Route path="/Login" element={<Login />} />
               <Route path="/Signup" element={<Signup />} />
               <Route path="/About" element={<About />} />
               {/* <Route path="/OrderHistory" element={<OrderHistory />} /> */}
@@ -32,11 +35,9 @@ function App() {
               <Route path="/Checkout" element={<Checkout />} />
               <Route path="/Beverages" element={<Beverages />} />
               <Route path="/Desserts" element={<Desserts />} />
-              
               {/* <Route path="/success" element={<OrderComplete />} /> */}
             </Routes>
           
-          {/* </Provider> */}
         </div>
       </Router>
     </div>
