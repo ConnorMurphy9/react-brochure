@@ -7,6 +7,8 @@ const path = require('path')
 const app = express();
 const PORT = process.env.PORT || 3001;
 const seedAll = require('./seeds/index')
+const cors = require('cors');
+
 
 const sess = {
   secret: 'Super duper top secret',
@@ -24,7 +26,13 @@ const sess = {
 }
 
 app.use(session(sess))
+app.use(cors());
 
+app.use('/login', (req, res) => {
+  res.send({
+    token: 'test123'
+  });
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

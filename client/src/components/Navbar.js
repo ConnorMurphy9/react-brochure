@@ -14,17 +14,23 @@ function Navbar () {
                             <Link to ="/Signup">Signup</Link>
                         </li>
                         <li>
+                            <Link to ="/Login">Login</Link>
+                        </li>
+                        <li>
+                            <Link to ="/OrderHistory">Order History</Link>
+                        </li>
+                        <li>
                             <Link to ="/Menu">Menu</Link>
                         </li>
                         <li>
                             <Link to ="/Checkout">Checkout</Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link to ="/Beverages">Beverages</Link>
                         </li>
                         <li>
                             <Link to ="/Desserts">Desserts</Link>
-                        </li>
+                        </li> */}
                     
 
 {/*<nav>{displayNav()}</nav> */}
