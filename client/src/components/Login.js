@@ -1,52 +1,106 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import '../styles/Login.css';
-
-async function loginUser(credentials) {
-  return fetch('http://localhost:8080/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  })
-    .then(data => data.json())
- }
+import { useState } from "react"; 
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut,
+} from "firebase/auth"; 
+import { auth } from "../firebase-config"
+import "./App.css";
 
 
-export default function Login({ setToken }) {
-  const [username, setUserName] = useState();
-  const [password, setPassword] = useState();
+function LoginPage() {
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    const token = await loginUser({
-      username,
-      password
-    });
-    setToken(token);
-  }
+    const [registerEmail, setRegisterEmail] = useState("");
+    const [registerPassword, setRegisterPassword] = useState("");
+    const [loginEmail, setLoginEmail] = useState("");
+    const [loginPassword, setLoginPassword] = useState("");
 
-  return(
-    <div className="login-wrapper">
-    <h1>Please Log In</h1>
-    <form onSubmit={handleSubmit}>
-      <label>
-        <p>Username</p>
-        <input type="text" onChange={e => setUserName(e.target.value)}/>
-      </label>
-      <label>
-        <p>Password</p>
-        <input type="password" onChange={e => setPassword(e.target.value)}/>
-      </label>
-      <div>
-        <button type="submit">Submit</button>
-      </div>
-    </form>
-  </div>
-  );
+    const [user, setUser] = useState({});
+
+    onAuthStateChanged(auth, (currentUser) => {
+       setUser(currentUser) 
+    })
+
+    const register = async () => {
+        try {
+            const user = await createUserWithEmailAndPassword(
+                auth, 
+                registerEmail,
+                registerPassword
+                );
+            console.log(user)
+          } catch (error) {
+            console.log(error.message);
+          }
+};
+    const login = async () => {
+        try {
+            const user = await signInWithEmailAndPassword(
+                auth, 
+                loginEmail,
+                loginPassword
+                );
+            console.log(user)
+          } catch (error) {
+            console.log(error.message);
+          }
+
+
+};
+
+    const logout = async () => {
+    
+
+        await signOut(auth);
+};
+
+
+
+    return (
+        <div className="Login2">
+            <div>
+                <h3> Register User </h3>
+
+                <input 
+                    placeholder="Email..." 
+                    onChange={(event) => {
+                        setRegisterEmail(event.target.value);
+                    }} 
+                />
+                <input 
+                    placeholder="Password..." 
+                    onChange={(event) => {
+                        setRegisterPassword(event.target.value);
+                    }} 
+                />
+
+                <button onClick={register}> Create User </button>
+            </div>
+            <div>
+                <h3> Login </h3>
+                
+                <input placeholder="Email..." 
+                      onChange={(event) => {
+                        setLoginEmail(event.target.value);
+                    }} 
+                />
+                <input placeholder="Password..." 
+                      onChange={(event) => {
+                        setLoginPassword(event.target.value);
+                    }} 
+                />
+
+                <button onClick={login}> Login </button>
+            </div>
+
+            <h4> User Logged In: </h4>
+                {user?.email}
+
+            <button onClick={logout}> Sign Out </button>
+
+        </div>
+    );
 }
 
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired
-}
+export default LoginPage;
