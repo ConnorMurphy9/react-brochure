@@ -58,7 +58,7 @@ function LoginPage() {
 
 
     return (
-        <div className="Login2">
+        <div className="Login">
             <div>
                 <h3> Register User </h3>
 
