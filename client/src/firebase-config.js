@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth';
-require('dotenv').config();
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCRhmQ8vJrDHuvYGv5PmcrJMq1A6tZCt1Q",
