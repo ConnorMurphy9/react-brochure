@@ -18,9 +18,14 @@ function LoginPage() {
 
     const [user, setUser] = useState({});
 
-    onAuthStateChanged(auth, (currentUser) => {
-       setUser(currentUser) 
-    })
+  
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
+    
+        }, [])
 
     const register = async () => {
         try {
@@ -95,7 +100,7 @@ function LoginPage() {
             </div>
 
             <h4> User Logged In: </h4>
-                {user?.email}
+            {user ? user.email : "Not Logged In"}
 
             <button onClick={logout}> Sign Out </button>
 
