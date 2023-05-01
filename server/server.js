@@ -78,6 +78,25 @@ app.post("/api/pizzas", firebaseAuthMiddleware, async (req, res) => {
 
 // app.listen(port, () => console.log(`Server running on port ${port}`));
 
+app.use(session(sess))
+
+
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// turn on routes
+app.use(routes);
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
+
+
 // turn on connection to db and server
 sequelize.sync({ force: false }).then(async () => {
     await seedAll()

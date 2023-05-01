@@ -8,12 +8,12 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { name, description, price, image_url } = req.body;
+  const { name, description, price } = req.body;
   const pizza = await Pizza.create({
     name,
     description,
     price,
-    image_url,
+  
   });
   res.send(pizza);
 });
