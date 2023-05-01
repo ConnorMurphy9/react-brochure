@@ -1,4 +1,4 @@
-// const User = require('./User');
+const User = require('./User');
 // const Order = require('./Order');
 // const Product = require('./Product');
 const Pizza = require('./Pizza');
@@ -22,5 +22,10 @@ const Pizza = require('./Pizza');
 //     as: 'product_users'
 //   });
 
+User.hasMany(Pizza);
+Pizza.belongsTo(User);
+
+
+
 // module.exports = { User, Order, Product};
-module.exports = {Pizza}
+module.exports = {User, Pizza};
