@@ -38,15 +38,15 @@ const firebaseAuthMiddleware = async (req, res, next) => {
   }
 };
 
-const sequelize = new Sequelize("pizzeria_db", "root", "root123", {
-  host: "localhost",
-  dialect: "mysql",
-});
+// const sequelize = new Sequelize("pizzeria_db", "root", "root123", {
+//   host: "localhost",
+//   dialect: "mysql",
+// });
 
-sequelize
-  .authenticate()
-  .then(() => console.log("Database connected!"))
-  .catch((err) => console.error("Error connecting to database: ", err));
+// sequelize
+//   .authenticate()
+//   .then(() => console.log("Database connected!"))
+//   .catch((err) => console.error("Error connecting to database: ", err));
 
 const User = sequelize.define("user", {
   firebase_id: Sequelize.STRING,
