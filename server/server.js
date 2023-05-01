@@ -48,41 +48,20 @@ const firebaseAuthMiddleware = async (req, res, next) => {
 //   .then(() => console.log("Database connected!"))
 //   .catch((err) => console.error("Error connecting to database: ", err));
 
-const User = sequelize.define("user", {
-  firebase_id: Sequelize.STRING,
-});
+// const User = sequelize.define("user", {
+//   firebase_id: Sequelize.STRING,
+// });
 
-const Pizza = sequelize.define("pizza", {
-  name: Sequelize.STRING,
-  description: Sequelize.TEXT,
-  price: Sequelize.FLOAT,
-});
+// const Pizza = sequelize.define("pizza", {
+//   name: Sequelize.STRING,
+//   description: Sequelize.TEXT,
+//   price: Sequelize.FLOAT,
+// });
 
-User.hasMany(Pizza);
-Pizza.belongsTo(User);
-
-app.get("/api/pizzas", async (req, res) => {
-  const pizzas = await Pizza.findAll();
-  res.send(pizzas);
-});
-
-app.post("/api/pizzas", firebaseAuthMiddleware, async (req, res) => {
-  const { name, description, price} = req.body;
-  const user = await User.findOne({ where: { firebase_id: req.user.uid } });
-  const pizza = await user.createPizza({
-    name,
-    description,
-    price,
-  });
-  res.send(pizza);
-});
-
-// app.listen(port, () => console.log(`Server running on port ${port}`));
-
-app.use(session(sess))
 
 
 
+app.use(session(sess))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

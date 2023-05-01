@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Pizza } = require("../models");
+const { Pizza, User } = require("../../models");
 
 router.get("/", async (req, res) => {
   const pizzas = await Pizza.findAll();
@@ -17,5 +17,17 @@ router.post("/", async (req, res) => {
   });
   res.send(pizza);
 });
+
+app.post("/api/pizzas", firebaseAuthMiddleware, async (req, res) => {
+  const { name, description, price} = req.body;
+  const user = await User.findOne({ where: { firebase_id: req.user.uid } });
+  const pizza = await user.createPizza({
+    name,
+    description,
+    price,
+  });
+  res.send(pizza);
+});
+
 
 module.exports = router;
