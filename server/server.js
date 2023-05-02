@@ -55,7 +55,7 @@
 // Import the necessary modules
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
+
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const seedAll = require('./seeds/index');
@@ -79,7 +79,7 @@ const app = express();
 
 // Use middleware to handle incoming requests
 app.use(bodyParser.json());
-app.use(cors());
+
 
 // Import the route files
 app.use(routes);
