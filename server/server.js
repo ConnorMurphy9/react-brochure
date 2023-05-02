@@ -60,6 +60,14 @@ const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const seedAll = require('./seeds/index');
 const path = require('path');
+import admin from 'firebase-admin';
+const serviceAccount = require('./serviceAccountKey.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
+
+
 
 // Start the server
 const PORT = process.env.PORT || 3001;
