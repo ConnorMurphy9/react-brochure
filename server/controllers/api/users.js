@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { User, Pizza } = require("../../models");
-const firebaseAuthMiddleware = require("../../firebaseAuthMiddleware");
+const firebaseAuthMiddleware = require("../../middleware/firebaseAuthMiddleware");
 
 router.post("/signup", async (req, res) => {
   const { email, password } = req.body;
