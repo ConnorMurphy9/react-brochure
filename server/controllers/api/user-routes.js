@@ -93,3 +93,83 @@
 // })
 
 // module.exports = router;
+
+
+const express = require('express');
+const router = express.Router();
+const admin = require('firebase-admin');
+const { User, Pizza, Order } = require("../../models");
+
+// Initialize Firebase Admin SDK
+const serviceAccount = require('../../serviceAccountKey.json');
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://auth-brochure-development.firebaseio.com'
+});
+
+// Verify Firebase ID token middleware
+const verifyIdToken = async (req, res, next) => {
+  try {
+    const idToken = req.headers.authorization.split('Bearer ')[1];
+    const decodedToken = await admin.auth().verifyIdToken(idToken);
+    req.uid = decodedToken.uid;
+    next();
+  } catch (err) {
+    console.error(err);
+    res.status(401).json({ message: 'Unauthorized' });
+  }
+};
+
+// Sign up endpoint
+router.post('/signup', async (req, res) => {
+  try {
+    const { email, password, username } = req.body;
+    const userRecord = await admin.auth().createUser({
+      email,
+      password,
+      username
+    });
+    const user = await User.create({
+      uid: userRecord.uid,
+      email: userRecord.email,
+      username: userRecord.username,
+      
+    });
+    res.status(201).json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({ message: 'Bad Request' });
+  }
+});
+
+// Login endpoint
+router.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const userRecord = await admin.auth().getUserByEmail(email);
+    const idToken = await admin.auth().createCustomToken(userRecord.uid);
+    const user = await User.findOne({
+      where: { uid: userRecord.uid }
+    });
+    res.status(200).json({ idToken, user });
+  } catch (err) {
+    console.error(err);
+    res.status(401).json({ message: 'Unauthorized' });
+  }
+});
+
+// Profile endpoint
+router.get('/profile', verifyIdToken, async (req, res) => {
+  try {
+    const { uid } = req;
+    const user = await User.findOne({
+      where: { uid }
+    });
+    res.status(200).json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(404).json({ message: 'User Not Found' });
+  }
+});
+
+module.exports = router;

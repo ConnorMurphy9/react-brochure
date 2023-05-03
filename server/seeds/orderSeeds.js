@@ -1,30 +1,28 @@
-// const { Order } = require('../models');
+const { Order } = require('../models');
     
-// const orderData = [
-//     {
-//       user_id: 1,
-//       product_id: 2
-//     },
-//     {
-//       user_id: 2,
-//       product_id: 3
-//     },
-//     {
-//       user_id: 3,
-//       product_id: 1
-//     },
-//     {
-//       user_id: 4,
-//       product_id: 5
-//     },
-//       {
-//       user_id: 5,
-//       product_id: 4
-//     }
-//   ];
+const orderData = [
+    {
+      userId: 1,
+      total: 10.99,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      userId: 2,
+      total: 24.98,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      userId: 3,
+      total: 19.99,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+  ];
 
-//   const seedOrders = () => Order.bulkCreate(orderData, {
-//     individualHooks: true,
-// });
+  const seedOrders = () => Order.bulkCreate(orderData, {
+    individualHooks: true,
+});
 
-// module.exports = seedOrders
+module.exports = seedOrders

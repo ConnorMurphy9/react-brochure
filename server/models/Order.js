@@ -5,27 +5,25 @@ class Order extends Model {}
 
 Order.init(
           {
-              id: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                primaryKey: true,
-                autoIncrement: true
-                },
-              user_id: {
-                type: DataTypes.INTEGER,
-                reference: {
-                  model: 'user',
-                  key: 'id',
-                }
-                },
-              product_id: {
-                type: DataTypes.INTEGER,
-                reference: {
-                  model: 'product',
-                  key: 'id',
-                }
+            id: {
+              type: DataTypes.INTEGER,
+              primaryKey: true,
+              autoIncrement: true
+            },
+            orderDate: {
+              type: DataTypes.DATE,
+              defaultValue: DataTypes.NOW
+            },
+            total: {
+              type: DataTypes.DECIMAL(10, 2),
+              allowNull: false
+            },
+            status: {
+              type: DataTypes.ENUM('pending', 'paid', 'shipped'),
+              defaultValue: 'pending'
+            }
               },
-          },
+        
           {
             sequelize,
             timestamps: false,
@@ -36,3 +34,9 @@ Order.init(
 );
 
 module.exports = Order;
+
+
+
+
+
+

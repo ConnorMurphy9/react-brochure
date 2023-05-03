@@ -76,6 +76,11 @@ class User extends Model{}
   password: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  firebaseUid: {
+    type: DataTypes.STRING,
+    unique: true,
+    allowNull: false,
   }  
 },
   {  

@@ -1,31 +1,35 @@
-// const { User } = require('../models');
+const { User } = require('../models');
     
-// const userData = [
-//     {
-//       username: "Lilly",
-//       password: "Lilly1234"
-//     },
-//     {
-//       username: "Jack",
-//       password: "Jack1234"
-//     },
-//     {
-//       username: "Sarah",
-//       password: "Sarah1234"
-//     },
-//     {
-//       username: "Mark",
-//       password: "Mark1234"
-//     },
-//       {
-//       username: "Will",
-//       password: "Will1234"
-//     }
-//   ];
+const userData = [
+    {
+      username: 'User 1',
+      email: 'user1@example.com',
+      password: "user1password",
+      firebaseUid: 'firebaseUid1',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      username: 'User 2',
+      email: 'user2@example.com',
+      password: "user2password",
+      firebaseUid: 'firebaseUid2',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      username: 'User 3',
+      email: 'user3@example.com',
+      password: "user3password",
+      firebaseUid: 'firebaseUid3',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+  ];
+  
+  const seedUsers = () => User.bulkCreate(userData, {
+    individualHooks: true,
+});
 
-//   const seedUsers = () => User.bulkCreate(userData, {
-//     individualHooks: true,
-// });
-
-// module.exports = seedUsers
+module.exports = seedUsers
   

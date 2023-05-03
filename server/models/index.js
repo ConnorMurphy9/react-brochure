@@ -1,31 +1,19 @@
 const User = require('./User');
-// const Order = require('./Order');
-// const Product = require('./Product');
+const Order = require('./Order');
 const Pizza = require('./Pizza');
-// User.belongsToMany(Product, {
-//     // Define the third table needed to store the foreign keys
-//     through: {
-//       model: Order,
-//       unique: false
-//     },
-//     // Define an alias for when data is retrieved
-//     as: 'user_orders'
-//   });
+const OrderPizza = require('./OrderPizza')
 
-//   Product.belongsToMany(User, {
-//     // Define the third table needed to store the foreign keys
-//     through: {
-//       model: Order,
-//       unique: false
-//     },
-//     // Define an alias for when data is retrieved
-//     as: 'product_users'
-//   });
+User.hasMany(Order);
+Order.belongsTo(User);
 
-User.hasMany(Pizza);
-Pizza.belongsTo(User);
+Order.belongsToMany(Pizza, { through: OrderPizza });
+Pizza.belongsToMany(Order, { through: OrderPizza });
+
+OrderPizza.belongsTo(Order);
+Order.hasMany(OrderPizza);
+
+OrderPizza.belongsTo(Pizza);
+Pizza.hasMany(OrderPizza);
 
 
-
-// module.exports = { User, Order, Product};
-module.exports = {User, Pizza};
+module.exports = { User, Order, Pizza, OrderPizza};

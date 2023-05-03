@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", firebaseAuthMiddleware, async (req, res) => {
   const { name, description, price} = req.body;
-  const user = await User.findOne({ where: { firebase_id: req.user.uid } });
+  const user = await User.findOne({ where: { firebaseUid: req.user.id } });
   const pizza = await user.createPizza({
     name,
     description,

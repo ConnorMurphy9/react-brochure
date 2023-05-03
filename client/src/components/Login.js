@@ -7,6 +7,10 @@ import {
 } from "firebase/auth"; 
 import { auth } from "../firebase-config";
 
+// import React, { useState, useEffect } from "react";
+// import firebase from "firebase/app";
+// import "firebase/auth";
+// import OrderHistory from "./OrderHistory";
 
 
 function LoginPage() {
@@ -108,3 +112,27 @@ function LoginPage() {
 
 export default LoginPage;
 
+// function Login() {
+//     const [user, setUser] = useState(null);
+  
+//     useEffect(() => {
+//       // Set the currently logged-in user in your app's state
+//       firebase.auth().onAuthStateChanged((user) => {
+//         setUser(user);
+//       });
+//     }, []);
+  
+//     return (
+//       <div>
+//         {user ? (
+//           <OrderHistory />
+//         ) : (
+//           <button onClick={() => firebase.auth().signInWithPopup(provider)}>
+//             Sign in with Google
+//           </button>
+//         )}
+//       </div>
+//     );
+//   }
+  
+//   export default Login;
