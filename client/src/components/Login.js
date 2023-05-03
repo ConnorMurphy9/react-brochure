@@ -4,7 +4,7 @@ import {
     signInWithEmailAndPassword,
     onAuthStateChanged,
     signOut,
-} from "firebase/auth"; 
+} from "firebase/compat/auth"; 
 import { auth } from "../firebase-config";
 
 // import React, { useState, useEffect } from "react";
