@@ -12,6 +12,7 @@
     "connect-session-sequelize": "^7.1.5",
     "dotenv": "^16.0.3",
     "express-session": "^1.17.3",
+    "firebase": "^9.21.0",
     "mysql2": "^2.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
