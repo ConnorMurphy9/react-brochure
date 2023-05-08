@@ -36,7 +36,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { getOrderHistory } from '../api/orders';
-import OrderPizza from '../../../server/models/OrderPizza';
+import OrderPizza from '../models/OrderPizza';
 
 const OrderHistory = () => {
   const { currentUser } = useAuth();

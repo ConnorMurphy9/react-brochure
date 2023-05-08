@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../../../server/config/connection');
 
 class OrderPizza extends Model {}
 

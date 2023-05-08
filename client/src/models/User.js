@@ -53,7 +53,7 @@
 // module.exports = User;
 
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../../../server/config/connection');
 
 class User extends Model{}
  User.init(  
