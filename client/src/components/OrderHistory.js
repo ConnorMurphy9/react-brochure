@@ -1,66 +1,76 @@
-// import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from 'react';
+// import firebase from 'firebase/compat/app';
+// import axios from 'axios';
 
-// function OrderHistory() {
+// const OrderHistory = () => {
 //   const [orders, setOrders] = useState([]);
 
 //   useEffect(() => {
-//     // Make a request to your API to fetch the order history for the currently logged-in user
-//     fetch("/api/orders")
-//       .then((res) => res.json())
-//       .then((data) => {
-//         setOrders(data);
-//       })
-//       .catch((err) => {
-//         console.error(err);
-//       });
+//     const user = firebase.auth().currentUser;
+//     if (user) {
+//       axios.get(`/api/orders/user/${user.uid}`)
+//         .then(response => {
+//           setOrders(response.data);
+//         })
+//         .catch(error => {
+//           console.log(error);
+//         });
+//     }
 //   }, []);
 
 //   return (
 //     <div>
 //       <h2>Order History</h2>
-//       {orders.map((order) => (
+//       {orders.map(order => (
 //         <div key={order.id}>
-//           <p>{order.pizzaName}</p>
-//           <p>{order.createdAt}</p>
+//           <p>Pizza: {order.pizza.name}</p>
+//           <p>Quantity: {order.quantity}</p>
 //         </div>
 //       ))}
 //     </div>
 //   );
-// }
+// };
 
 // export default OrderHistory;
 
-// OrderHistory.js
-
-import React, { useState, useEffect } from 'react';
-import firebase from 'firebase/compat/app';
-// import 'firebase/compat/auth';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { getOrderHistory } from '../api/orders';
+import OrderPizza from '../../../server/models/OrderPizza';
 
 const OrderHistory = () => {
+  const { currentUser } = useAuth();
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    const user = firebase.auth().currentUser;
-    if (user) {
-      axios.get(`/api/orders/user/${user.uid}`)
-        .then(response => {
-          setOrders(response.data);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    if (currentUser) {
+      getOrderHistory(currentUser.uid).then((data) => {
+        setOrders(data);
+      });
     }
-  }, []);
+  }, [currentUser]);
+
+  if (!currentUser) {
+    return (
+      <div>
+        <p>Please log in to view your order history.</p>
+      </div>
+    );
+  }
+
+  if (orders.length === 0) {
+    return (
+      <div>
+        <p>You have not placed any orders yet.</p>
+      </div>
+    );
+  }
 
   return (
     <div>
       <h2>Order History</h2>
-      {orders.map(order => (
-        <div key={order.id}>
-          <p>Pizza: {order.pizza.name}</p>
-          <p>Quantity: {order.quantity}</p>
-        </div>
+      {orders.map((order) => (
+        <OrderPizza key={order.id} order={order} />
       ))}
     </div>
   );
