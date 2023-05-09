@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Pizza, User } = require("../../models");
+const { Order, Pizza, User } = require('../../models');
 const firebaseAuthMiddleware = require("../../middleware/firebaseAuthMiddleware");
 
 router.get("/", async (req, res) => {

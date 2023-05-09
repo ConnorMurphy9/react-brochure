@@ -10,6 +10,7 @@
 //     if (user) {
 //       axios.get(`/api/orders/user/${user.uid}`)
 //         .then(response => {
+//           console.log(response)
 //           setOrders(response.data);
 //         })
 //         .catch(error => {
@@ -33,10 +34,19 @@
 
 // export default OrderHistory;
 
+
+
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { getOrderHistory } from '../api/orders';
-import OrderPizza from '../models/OrderPizza';
+// import { getOrderHistory } from '../api/orders';
+import OrderItem from './OrderItem';
+import axios from 'axios';
+
+const getOrderHistory = async () => {
+  const response = await axios.get('/api/orders/history');
+  console.log(response);
+  return response.data;
+};
 
 const OrderHistory = () => {
   const { currentUser } = useAuth();
@@ -70,7 +80,7 @@ const OrderHistory = () => {
     <div>
       <h2>Order History</h2>
       {orders.map((order) => (
-        <OrderPizza key={order.id} order={order} />
+        <OrderItem key={order.id} order={order} />
       ))}
     </div>
   );

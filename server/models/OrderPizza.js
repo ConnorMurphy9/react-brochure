@@ -1,12 +1,13 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../../../server/config/connection');
+const sequelize = require('../config/connection');
 
 class OrderPizza extends Model {}
 
 OrderPizza.init(
     {
-        id: {
+          id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             primaryKey: true,
             autoIncrement: true
           },
@@ -17,7 +18,21 @@ OrderPizza.init(
           price: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false
-          }
+          },
+          orderId: {
+            type: DataTypes.INTEGER,
+            references: {
+              model: 'order',
+              key: 'id'
+            },
+          },
+          pizzaId: {
+            type: DataTypes.INTEGER,
+            references: {
+              model: 'pizza',
+              key: 'id'
+            },
+  },
 },
 {
     sequelize,

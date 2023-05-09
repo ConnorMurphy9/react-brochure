@@ -98,7 +98,7 @@
 const express = require('express');
 const router = express.Router();
 const admin = require('firebase-admin');
-const { User, Pizza, Order } = require("../../models");
+const { Order, Pizza, User } = require('../../models');
 
 // Initialize Firebase Admin SDK
 const serviceAccount = require('../../serviceAccountKey.json');
@@ -159,17 +159,17 @@ router.post('/login', async (req, res) => {
 });
 
 // Profile endpoint
-router.get('/profile', verifyIdToken, async (req, res) => {
-  try {
-    const { uid } = req;
-    const user = await User.findOne({
-      where: { uid }
-    });
-    res.status(200).json(user);
-  } catch (err) {
-    console.error(err);
-    res.status(404).json({ message: 'User Not Found' });
-  }
-});
+// router.get('/profile', verifyIdToken, async (req, res) => {
+//   try {
+//     const { uid } = req;
+//     const user = await User.findOne({
+//       where: { uid }
+//     });
+//     res.status(200).json(user);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(404).json({ message: 'User Not Found' });
+//   }
+// });
 
 module.exports = router;
