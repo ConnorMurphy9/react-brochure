@@ -52,8 +52,9 @@
 //   });
 // })
 
-// Import the necessary modules
 const express = require('express');
+// Create an instance of the Express application
+const app = express();
 const bodyParser = require('body-parser');
 
 const routes = require('./controllers');
@@ -72,10 +73,6 @@ const serviceAccount = require('./serviceAccountKey.json');
 // Start the server
 const PORT = process.env.PORT || 3001;
 
-
-
-// Create an instance of the Express application
-const app = express();
 
 // Use middleware to handle incoming requests
 app.use(bodyParser.json());
